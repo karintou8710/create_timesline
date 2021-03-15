@@ -46,10 +46,14 @@ async def on_member_join(member):
     #botは処理しない
     if member.bot:
         return
-
+    
     name = "times_" + member.display_name
     guild = member.guild
+
     times = getCategory(guild.categories, TIMES_ID)
+    #timesが存在しない場合
+    if times is None:
+        return
     await times.create_text_channel(name)
     
 
